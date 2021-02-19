@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { renderRoutes } from 'react-router-config';
 import { makeStyles, 
     Typography, 
@@ -15,6 +15,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { verifyTransferRequest } from 'ducks';
 
 import ConfirmTransfer from "../ConfirmTransferView";
+
+
+import { accountRequest } from 'ducks';
 
 //import Alert from '@material-ui/lab/Alert';
 const useStyles = makeStyles((theme) => ({
@@ -35,17 +38,38 @@ const useStyles = makeStyles((theme) => ({
 const TransferView = ({ route }) => {
     const auth = useSelector((state)=>state.auth);
     const transferData = useSelector((state)=>state.transfer);
+    const userData = useSelector((state)=>state.account);
+
     const  isValidaded = transferData.validate;
     const classes = useStyles();
     let history = useHistory();
     const dispatch = useDispatch();
     const [transfer,setTransfer ]= useState({
-        available:"12200",
-        sender : "602f6fbc8a482e7872165ce7",
+        available:"1222",
+        sender : "",//"602f6fbc8a482e7872165ce7",
         receiver : "",
         amount : "",
         message : ""
     });
+    useEffect(()=>{
+        
+        if(userData.data!=null){
+            console.log('userData',userData);
+            setTransfer({
+                ...transfer,
+                available:userData.data.amount,
+                sender : userData.data.owner,
+            })
+        }
+    },[userData])
+
+    useEffect(() => {
+        if (auth.data != null) {
+          dispatch(accountRequest(auth.data['access-token']));
+        }
+      }, [auth, dispatch]);
+
+   
 
     const token1 = localStorage.getItem("auth");
     console.log(token1["access-token"]);
