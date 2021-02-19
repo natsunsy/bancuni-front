@@ -6,6 +6,8 @@ import { PublicPage } from 'pages';
 import TransferView from './pages/dashboard/transfer/TransferView'
 import ConfirmTransfer from './pages/dashboard/transfer/ConfirmTransferView'
 
+import DashboardHome from 'pages/dashboard/Account'
+
 const routes = [
   {
     path: '/error',
@@ -45,7 +47,7 @@ const routes = [
       {
         path: '/dashboard/account',
         exact: true,
-        component: withAuthentication(() => <div><h1>Home</h1></div>),
+        component: withAuthentication(() => <DashboardHome />) //
       },
       {
         path: '/dashboard/transfers',
