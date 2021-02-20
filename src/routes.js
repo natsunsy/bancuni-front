@@ -16,14 +16,12 @@ const routes = [
       {
         path: '/error/401',
         exact: true,
-        component: () => (
-          <div>Usted no se encuentra autorizado para ingresar a esta ruta</div>
-        ),
+        component: () => <div>Error 401</div>,
       },
       {
         path: '/error/404',
         exact: true,
-        component: () => <div>Error 404: Not Found!</div>,
+        component: () => <div>Error 404</div>,
       },
       {
         component: () => <Redirect to="/error/404" />,
@@ -53,11 +51,6 @@ const routes = [
         path: '/dashboard/transfers',
         exact: true,
         component: withAuthentication(TransferView),
-      },
-      {
-        path: '/dashboard/confirm',
-        exact: true,
-        component: withAuthentication(ConfirmTransfer),
       },
     ],
   },

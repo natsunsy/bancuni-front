@@ -4,6 +4,7 @@ import * as accountSagas from './account';
 import * as userSagas from './user';
 import * as transactionSagas from './transaction';
 import * as transferSagas from './transfer' ;
+import * as confirmTransferSagas from './confirmTransfer';
 
 function* rootSaga() {
   yield all([
@@ -14,6 +15,7 @@ function* rootSaga() {
     fork(userSagas.userSaga),
     fork(transactionSagas.transactionSaga),
     fork(transferSagas.transferValidationSaga),
+    fork(confirmTransferSagas.confirmTransferValidationSaga)
   ]);
 }
 

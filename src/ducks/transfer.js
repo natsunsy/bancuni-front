@@ -1,7 +1,8 @@
+import { GO_TO_REGISTER } from "./auth";
+
 export const TRANSFER_REQUEST = 'bancuni/auth/ID_REQUEST';
 export const TRANSFER_SUCCESS = 'bancuni/auth/ID_SUCCESS';
 export const TRANSFER_ERROR = 'bancuni/auth/ID_ERROR';
-
 
 const initialState = {
   loading: false,
@@ -32,6 +33,7 @@ export default function reducer(state = initialState, action) {
         loading: false,
         error: action.payload.message,
         data: null,
+        validate: false,
       };
     default:
       return state;
@@ -52,3 +54,5 @@ export const verifyTransferError = (message) => ({
   type: TRANSFER_ERROR,
   payload: { message },
 });
+
+

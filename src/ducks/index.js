@@ -7,6 +7,7 @@ import transactionReducer from './transaction';
 import userReducer from './user';
 import alertSnackbarReducer from './alertSnackbar';
 import transferReducer from './transfer';
+import confirmTransferReducer from './confirmTransfer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   transaction: transactionReducer,
   user: userReducer,
   alertSnackbar: alertSnackbarReducer,
-  transfer: transferReducer
+  transfer: transferReducer,
+  confirm: confirmTransferReducer,
 });
 
 export default rootReducer;
@@ -25,3 +27,4 @@ export * from './transaction';
 export * from './user';
 export * from './alertSnackbar';
 export * from './transfer';
+export * from './confirmTransfer';
